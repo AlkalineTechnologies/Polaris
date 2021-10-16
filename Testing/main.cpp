@@ -1,8 +1,8 @@
 #include <Window.h>
-#include <App.h>
+#include <Game.h>
 
 int main() {
-    Polaris::App *app = Polaris::App::AllocateNew();
+    Polaris::Game *app = Polaris::Game::AllocateNew();
     Polaris::Window window("Hello, world!");
     window.show();
     app->run();

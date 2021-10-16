@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 find_library(COCOA_LIBRARY Cocoa)
 
-add_library(polaris Library/Window.h Library/Darwin/Window.mm Library/App.h Library/Darwin/App.mm)
+add_library(polaris Library/Window.h Library/Darwin/Window.mm Library/Game.h Library/Darwin/Game.mm)
 
 target_link_libraries(polaris ${COCOA_LIBRARY})
 

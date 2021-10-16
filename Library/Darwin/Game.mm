@@ -4,7 +4,7 @@
 
 #ifdef __APPLE__
 
-#include <App.h>
+#include <Game.h>
 
 #include <Cocoa/Cocoa.h>
 
@@ -13,9 +13,9 @@
 namespace Polaris {
     id app;
 
-    App::~App() = default;
+    Game::~Game() = default;
 
-    App::App() {
+    Game::Game() {
         delete _instance;
 
         [NSAutoreleasePool new];
@@ -29,23 +29,23 @@ namespace Polaris {
         _instance = this;
     }
 
-    App *App::AllocateNew() {
-        return new App();
+    Game *Game::AllocateNew() {
+        return new Game();
     }
 
-    void App::run() {
+    void Game::run() {
         [app run];
     }
 
-    App *App::getInstance() {
+    Game *Game::getInstance() {
         return _instance;
     }
 
-    void *App::getNative() {
+    void *Game::getNative() {
         return _native;
     }
 
-    App *App::_instance = nullptr;
+    Game *Game::_instance = nullptr;
 }
 
 #endif
