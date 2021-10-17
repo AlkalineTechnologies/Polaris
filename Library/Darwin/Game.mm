@@ -4,7 +4,7 @@
 
 #ifdef __APPLE__
 
-#include <Game.h>
+#include "../Game.h"
 
 #include <Cocoa/Cocoa.h>
 

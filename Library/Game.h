@@ -14,8 +14,16 @@ namespace Polaris {
         static Game *AllocateNew();
 
         void run();
-        Game *getInstance();
-        void *getNative();
+
+        [[nodiscard]] static Game *getInstance() {
+            return _instance;
+        }
+        [[nodiscard]] void *getNative() const {
+            return _native;
+        }
+        [[nodiscard]] double getDeltaTime() const {
+            return (double)_deltaTimeReal / 1000000000.0;
+        }
 
         int frameCap = 0;
 

@@ -7,7 +7,7 @@ if (APPLE)
 find_library(COCOA_LIBRARY Cocoa)
 endif()
 
-add_library(polaris Library/Window.h Library/Darwin/Window.mm Library/Game.h Library/Darwin/Game.mm)
+add_library(polaris Library/Window.h Library/Darwin/Window.mm Library/Game.h Library/Darwin/Game.mm Library/Windows/Game.cpp Library/Component.h Library/Script.h Library/Object.h)
 
 if (APPLE)
 target_link_libraries(polaris ${COCOA_LIBRARY})
