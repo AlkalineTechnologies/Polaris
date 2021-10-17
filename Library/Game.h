@@ -17,10 +17,20 @@ namespace Polaris {
         Game *getInstance();
         void *getNative();
 
+        int frameCap = 0;
+
     private:
         Game();
+        void _gameLoop();
+
         static Game *_instance;
+
         void *_native;
+        std::thread *gameLoopThread;
+
+        bool _terminate = false;
+        long _deltaTimeReal = 0;
+        long _deltaTimeUncapped = 0;
     };
 }
 

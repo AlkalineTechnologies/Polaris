@@ -2,9 +2,10 @@
 #include <Game.h>
 
 int main() {
-    Polaris::Game *app = Polaris::Game::AllocateNew();
+    Polaris::Game *game = Polaris::Game::AllocateNew();
+    game->frameCap = 60;
     Polaris::Window window("Hello, world!");
     window.show();
-    app->run();
+    game->run();
     return 0;
 }
