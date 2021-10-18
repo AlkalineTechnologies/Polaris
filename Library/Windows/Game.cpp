@@ -7,18 +7,10 @@
 #include <iostream>
 
 namespace Polaris {
-    id app;
-
     Game::~Game() = default;
 
     Game::Game() {
         delete _instance;
-
-        [NSAutoreleasePool new];
-        _native = [NSApplication sharedApplication];
-        [(id)_native setActivationPolicy:NSApplicationActivationPolicyRegular];
-
-        [(id)_native activateIgnoringOtherApps:YES];
 
         app = (id)_native;
 
@@ -31,6 +23,7 @@ namespace Polaris {
 
     void Game::run() {
         gameLoopThread = new std::thread([&]() { _gameLoop(); });
+
         MSG msg = { };
         while (GetMessage(&msg, NULL, 0, 0) > 0) {
             TranslateMessage(&msg);
@@ -68,8 +61,7 @@ namespace Polaris {
                     timeElapsed = endTime - startTime;
                     if (timeElapsed.count() >= targetNS) break;
 
-                    timeval tv{ 0, 1 };
-                    select(0, nullptr, nullptr, nullptr, &tv);
+                    Sleep(1);
                 }
 
                 _deltaTimeReal = timeElapsed.count();
