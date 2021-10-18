@@ -32,14 +32,6 @@ namespace Polaris {
         }
     }
 
-    Game *Game::getInstance() {
-        return _instance;
-    }
-
-    void *Game::getNative() {
-        return _native;
-    }
-
     void Game::_gameLoop() {
         while (!_terminate) {
             auto startTime = std::chrono::high_resolution_clock::now();

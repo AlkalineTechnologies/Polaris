@@ -32,17 +32,20 @@ namespace Polaris {
 
         wc.lpfnWndProc = WindowProc;
         wc.hInstance = GetModuleHandle(nullptr);
-        wc.lpczClassName = L"Polaris Engine";
+        wc.lpszClassName = L"Polaris Engine";
 
         RegisterClass(&wc);
+
+        int width = fullscreen ? GetSystemMetrics(SM_CXSCREEN) : CW_USEDEFAULT;
+        int height = fullscreen ? GetSystemMetrics(SM_CYSCREEN) : CW_USEDEFAULT;
 
         window = CreateWindowEx(
             0,
             CLASS_NAME,
             stringToWideString(title).c_str(),
-            WS_OVERLAPPEDWINDOW,
+            fullscreen ? WS_OVERLAPPEDWINDOW ^ WS_CAPTION : WS_OVERLAPPEDWINDOW,
 
-            CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+            CW_USEDEFAULT, CW_USEDEFAULT, width, height,
 
             NULL,
             NULL,
@@ -55,15 +58,15 @@ namespace Polaris {
         }
     }
 
-    Polaris::Window::setTitle(std::string title) {
+    void Polaris::Window::setTitle(std::string title) {
         SetWindowText((HWND)window, stringToWideString(title).c_str());
     }
 
-    Polaris::Window::show() {
+    void Polaris::Window::show() {
         ShowWindow((HWND)window, SW_SHOW);
     }
 
-    Polaris::Window::hide() {
+    void Polaris::Window::hide() {
         ShowWindow((HWND)window, SW_HIDE);
     }
 
@@ -77,7 +80,7 @@ namespace Polaris {
         case WM_PAINT:
             {
                 PAINTSTRUCT ps;
-                HDC hdc = BeginPaint(hwnd, &ps);
+                HDC hdc = BeginPaint(hWnd, &ps);
 
 
 
@@ -88,7 +91,7 @@ namespace Polaris {
             return 0;
 
         }
-        return DefWindowProc(hwnd, uMsg, wParam, lParam);
+        return DefWindowProc(hWnd, uMsg, wParam, lParam);
     }
 }
 #endif
