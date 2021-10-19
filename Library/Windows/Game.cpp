@@ -17,7 +17,7 @@ namespace Polaris {
         _instance = this;
     }
 
-    Game *Game::AllocateNew() {
+    Game *Game::CreateNew() {
         return new Game();
     }
 

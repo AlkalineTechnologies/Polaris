@@ -11,7 +11,7 @@ namespace Polaris {
     class Game {
     public:
         ~Game();
-        static Game *AllocateNew();
+        static Game *CreateNew();
 
         void run();
 
