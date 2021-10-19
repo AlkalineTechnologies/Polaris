@@ -12,9 +12,9 @@ namespace Polaris {
     class Object {
     public:
         void addComponent(Component *component) {
-            components.push_back(component)
+            components.push_back(component);
         }
-        Component *getComponent()
+        Component *getComponent();
 
     private:
         std::vector<Component *> components;
