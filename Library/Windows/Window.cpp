@@ -21,56 +21,56 @@ std::wstring stringToWideString(const std::string& s)
 }
 
 namespace Polaris {
-    LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+    LRESULT CALLBACK WindowProcA(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
     Polaris::Window::Window(std::string title, int width, int height, bool fullscreen, bool show) {
         _title = title;
         _width = width;
         _height = height;
 
-        WNDCLASS wc = {};
+        WNDCLASSA wc = {};
 
-        wc.lpfnWndProc = WindowProc;
-        wc.hInstance = GetModuleHandle(nullptr);
-        wc.lpszClassName = L"Polaris Engine";
+        wc.lpfnWndProc = WindowProcA;
+        wc.hInstance = GetModuleHandleW(nullptr);
+        wc.lpszClassName = "Polaris Engine";
 
-        RegisterClass(&wc);
+        RegisterClassA(&wc);
 
-        int width = fullscreen ? GetSystemMetrics(SM_CXSCREEN) : CW_USEDEFAULT;
-        int height = fullscreen ? GetSystemMetrics(SM_CYSCREEN) : CW_USEDEFAULT;
+        width = fullscreen ? GetSystemMetrics(SM_CXSCREEN) : CW_USEDEFAULT;
+        height = fullscreen ? GetSystemMetrics(SM_CYSCREEN) : CW_USEDEFAULT;
 
-        window = CreateWindowEx(
+        _window = CreateWindowExA(
             0,
-            CLASS_NAME,
-            stringToWideString(title).c_str(),
+            "Polaris Engine",
+            title.c_str(),
             fullscreen ? WS_OVERLAPPEDWINDOW ^ WS_CAPTION : WS_OVERLAPPEDWINDOW,
 
             CW_USEDEFAULT, CW_USEDEFAULT, width, height,
 
             NULL,
             NULL,
-            hInstance,
+            GetModuleHandleA(nullptr),
             NULL
             );
 
         if (show) {
-            ShowWindow((HWND)window, SW_SHOW);
+            ShowWindow((HWND)_window, SW_SHOW);
         }
     }
 
     void Polaris::Window::setTitle(std::string title) {
-        SetWindowText((HWND)window, stringToWideString(title).c_str());
+        SetWindowTextA((HWND)_window,title.c_str());
     }
 
     void Polaris::Window::show() {
-        ShowWindow((HWND)window, SW_SHOW);
+        ShowWindow((HWND)_window, SW_SHOW);
     }
 
     void Polaris::Window::hide() {
-        ShowWindow((HWND)window, SW_HIDE);
+        ShowWindow((HWND)_window, SW_HIDE);
     }
 
-    LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+    LRESULT CALLBACK WindowProcA(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
         switch (uMsg)
         {
         case WM_DESTROY:
@@ -86,12 +86,12 @@ namespace Polaris {
 
                 FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW+1));
 
-                EndPaint(hwnd, &ps);
+                EndPaint(hWnd, &ps);
             }
             return 0;
 
         }
-        return DefWindowProc(hWnd, uMsg, wParam, lParam);
+        return DefWindowProcA(hWnd, uMsg, wParam, lParam);
     }
 }
 #endif
