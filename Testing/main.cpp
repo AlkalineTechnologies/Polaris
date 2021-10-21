@@ -2,9 +2,14 @@
 #include <Game.h>
 
 int main() {
-    Polaris::Game *app = Polaris::Game::AllocateNew();
-    Polaris::Window window("Hello, world!");
+
+    //Polaris::Game *app = Polaris::Game::AllocateNew();
+    Polaris::Window window("Hello, Polaris!", 800, 600, false, true);
+    
+
+    //TODO: Implement hide
     window.show();
-    app->run();
+    // app->run();
     return 0;
+
 }
