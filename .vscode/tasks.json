@@ -1,0 +1,27 @@
+    {
+    "version" : "2.0.0",
+    "tasks": [
+        {
+            "type"              : "shell",
+            "label"             : "[Linux] Build Libraries",
+            "command"           : "${workspaceFolder}/LBuild.sh",
+            "problemMatcher"    : [
+                "$gcc"
+            ]
+        },
+        {
+            "type"          : "cppbuild",
+            "label"         : "[Linux] Build test game",
+            "command"       : "/usr/bin/g++-10",
+            "args": [
+                "${workspaceFolder}/Testing/*.cpp",
+                "${workspaceFolder}/Library/Linux/build/*.o",
+                "-o",
+                "${workspaceFolder}/Testing/build/GOP.out",
+                "-I${workspaceFolder}/Library",
+                "-lxcb","-pthread"
+            ],
+            "dependsOn":["[Linux] Build Libraries"]
+        }
+    ]
+}
