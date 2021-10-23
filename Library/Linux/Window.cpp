@@ -1,96 +1,86 @@
-// c++ standard
-#include <string>
+#ifdef __linux__
 
-// X11 
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
-#include <X11/Xos.h>
-
-// Polaris
+// polaris
 #include <Window.h>
+#include <Linux/xcb_Winevents.hpp>
 
-//references
-void INIT_XLIB(int height,  int width, std::string title);
-void CLOSE_XLIB();
-void REDRAW_XLIB();
-
-typedef XID Wndw;
-/*
-    Display *display;
-    Window parent;
-    int x, y; 
-    unsigned int width, height;
-    unsigned int border_width;
-    int depth;
-    unsigned int class;
-    Visual *visual
-    unsigned long valuemask;
-    XSetWindowAttributes *attributes;
-*/
+// xcb libraries
+#include <xcb/xcb.h>
+#include <xcb/xproto.h>
+#include <xcb/xcb_ewmh.h>
 
 
-Display *display;
-int screen;
-Wndw window;
-GC  Gcontxt; 
-XEvent event;
-KeySym key;
-char KeyPressBuffer[256];
-unsigned long white, black, red, green, blue, alpha;
-unsigned long RGB(int r, int g, int b);
+// c++ standard library
+#include <unistd.h>
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <future>
 
-namespace Polaris {
-    bool _show;
-    std::string _Tt;
-    int _w; int _h;
-    bool _fullscreen;
-    Window::Window(std::string Title, int width, int height, bool fullscreen, bool show){
-        _Tt = Title;
-        _w = width; _h = height;
-        _fullscreen = fullscreen; _show = show;
 
-        INIT_XLIB(_h, _w, _Tt);
-        if (show){
-            while (1){
-                XNextEvent(display, &event);
-            }
-        }
 
-    }
-    void Window::show(){
-        while(1){
-            XNextEvent(display, &event);
-        }
-    }
+xcb_connection_t *connection    = xcb_connect(NULL, NULL);
+xcb_screen_t *screen            = xcb_setup_roots_iterator(xcb_get_setup(connection)).data;
+xcb_window_t window             = xcb_generate_id(connection);
+xcb_generic_event_t *event; 
 
-}
-
-void INIT_XLIB( int height,  int width, std::string title){
-    display = XOpenDisplay((char *) 0);
-    screen  = DefaultScreen(display);
-    black   = BlackPixel(display, screen);
-    white   = WhitePixel(display, screen);
-    red     = RGB(255,0,0);
-    green   = RGB(0,255,0);
-    blue    = RGB(0,0,255);
-    window  = XCreateSimpleWindow(display, DefaultRootWindow(display),0,0, width, height, 5, white, black);
-    XSetStandardProperties(display, window, title.c_str(), NULL, None, NULL, 0, NULL);
-    XSelectInput(display, window, ExposureMask | ButtonPressMask | KeyPressMask );
-    Gcontxt = XCreateGC(display, window, 0,0);
-    XSetBackground(display, Gcontxt, white);
-    XSetForeground(display, Gcontxt, black);
-    XMapRaised(display, window);
+void Init_XCB(int width, int height, const char *title) {
+    xcb_create_window(connection, XCB_COPY_FROM_PARENT, window, screen->root, 0, 0, width, height, 0, XCB_WINDOW_CLASS_INPUT_OUTPUT, screen->root_visual, 0, NULL);
     
+    xcb_change_property (connection,
+                             XCB_PROP_MODE_REPLACE,
+                             window,
+                             XCB_ATOM_WM_NAME,
+                             XCB_ATOM_STRING,
+                             8,
+                             std::strlen (title),
+                             title );
+    xcb_map_window(connection, window);
+    xcb_flush(connection);
 
 }
-void REDRAW_XLIB(){
-    XClearWindow(display, window);
+void disconnect_XCB() {
+    xcb_disconnect(connection);
 }
-void CLOSE_XLIB(){
-    XFreeGC(display, Gcontxt);
-    XDestroyWindow(display, window);
-    // exit(0);
+
+namespace Polaris{
+    Polaris::Window::Window(std::string title, int width, int height, bool fullscreen, bool show) {
+        Init_XCB(width, height, title.c_str());
+        if (show){
+            this->show();
+        }
+    };
+
+    void Polaris::Window::setTitle(std::string title) {
+        xcb_change_property (connection,
+                             XCB_PROP_MODE_REPLACE,
+                             window,
+                             XCB_ATOM_WM_NAME,
+                             XCB_ATOM_STRING,
+                             8,
+                             std::strlen (title.c_str()),
+                             title.c_str() );
+        xcb_flush(connection);
+    }
+
+    void Polaris::Window::show() {
+        xcb_map_window(connection, window);
+        xcb_flush(connection);
+    };
+    void Polaris::Window::hide() {
+        xcb_unmap_window(connection, window);
+        xcb_flush(connection);
+    };
+
 }
-unsigned long RGB(int r, int g, int b){
-    return b + (g << 8) + (r << 16);
-}
+
+
+// void CLOSE_XLIB(){
+//     XFreeGC(display, Gcontxt);
+//     XDestroyWindow(display, window);
+//     // exit(0);
+// }
+// unsigned long RGB(int r, int g, int b){
+//     return b + (g << 8) + (r << 16);
+// }
+#endif
