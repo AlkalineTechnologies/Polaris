@@ -3,8 +3,6 @@
 #include <unistd.h>
 
 int main() {
-    
-
     //TODO: Implement hide for linux
 
     Polaris::Window window("The game of polaris", 800, 600, false, true);
