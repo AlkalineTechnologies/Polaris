@@ -3,7 +3,7 @@ project(Polaris)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_library(polaris Library/Window.h Library/Game.h Library/Component.h Library/Script.h Library/Object.h)
+add_library(polaris Library/Window.h Library/Game.h Library/Component.h Library/Script.h Library/Object.h Library/Vector.h Library/Exception.h Library/Utility.h)
 
 if (APPLE)
     target_sources(polaris PUBLIC Library/Darwin/Game.mm Library/Darwin/Window.mm)
