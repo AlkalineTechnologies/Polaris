@@ -9,8 +9,5 @@ int main() {
     Polaris::Game *game = Polaris::Game::CreateNew();
     game->frameCap = 60;
     
-    
     game->run();
-
-
 }
