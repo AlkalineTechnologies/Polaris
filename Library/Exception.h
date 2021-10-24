@@ -10,29 +10,23 @@
 
 class Exception: public std::exception {
 public:
-    ~Exception() {
-        delete _whatToReturn;
-    }
-
     explicit Exception(std::string &message) {
         _message = message;
+        _messageToReturn = "Exception: " + _exceptionType + "\nMessage:" + _message;
     }
 
     std::string getType() {
         return _exceptionType;
     }
 
-    [[nodiscard]] const char *what() noexcept
+    [[nodiscard]] const char * what() const noexcept override
     {
-        std::string message = "Exception: " + _exceptionType + "\nMessage:" + _message;
-        _whatToReturn = new const char[message.length()] {};
-        memcpy((void *) _whatToReturn, message.c_str(), message.length());
-        return _whatToReturn;
+        return _messageToReturn.c_str();
     }
 private:
     const std::string _exceptionType = "Exception";
     std::string _message;
-    const char *_whatToReturn;
+    std::string _messageToReturn;
 };
 
 #endif //POLARIS_EXCEPTION_H
