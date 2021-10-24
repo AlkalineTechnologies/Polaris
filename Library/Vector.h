@@ -5,8 +5,8 @@
 #ifndef POLARIS_VECTOR_H
 #define POLARIS_VECTOR_H
 
-#include <Exception.h>
-#include <Utility.h>
+#include "Exception.h"
+#include "Utility.h"
 
 namespace Polaris {
     class VectorOutOfRangeException: Exception {
