@@ -9,7 +9,6 @@ int main() {
     Polaris::Game *game = Polaris::Game::CreateNew();
     // game->frameCap = 60;
     window.Fullscreen();
+    
     game->run();
-
-
 }

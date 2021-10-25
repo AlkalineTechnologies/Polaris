@@ -1,5 +1,5 @@
 //
-// Created by Lysander Mealy on 10/16/21.
+// lyly is a great programmer (a progedy in denial) [he helped me] — Plasmarad
 //
 
 #ifdef __linux__
