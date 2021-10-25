@@ -15,6 +15,8 @@ namespace Polaris {
 
         void setTitle(std::string title);
 
+        void Fullscreen();
+
         void show();
 
         void hide();

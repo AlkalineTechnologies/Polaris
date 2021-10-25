@@ -5,11 +5,13 @@
 #include <xcb/xcb.h>
 #include <xcb/xcb_ewmh.h>
 #include <iostream>
+// static xcb_ewmh_connection_t EWMH;
 
 extern xcb_connection_t *connection;
 extern xcb_screen_t *screen;        
 extern xcb_window_t window;         
 extern xcb_generic_event_t *event; 
+// xcb_intern_atom_cookie_t *EWMHCookie = xcb_ewmh_init_atoms(connection, &EWMH);
 
 
 static void Window_Loop(){

@@ -37,7 +37,7 @@ namespace Polaris {
         std::thread *gameLoopThread;
 
         bool _terminate = false;
-        long _deltaTimeReal = 0;
+        long _deltaTimeReal = 1;
         long _deltaTimeUncapped = 0;
     };
 }

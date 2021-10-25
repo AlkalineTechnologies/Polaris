@@ -4,7 +4,7 @@
 # In order to build this script please give it the execute permission:
 #   sudo chmod +x LBuild.sh
 
-cd ./Library/Linux/Build
+cd ./Library/Linux/build
 
 
 #     Linux/*.cpp   Linux/Library   X11 library

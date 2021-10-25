@@ -8,6 +8,7 @@
 
 #include <xcb/xcb.h>
 #include <Linux/xcb_Winevents.hpp>
+#include <unistd.h>
 
 #include <iostream>
 
@@ -34,8 +35,6 @@ namespace Polaris {
         while (!_terminate) {
             auto startTime = std::chrono::high_resolution_clock::now();
 
-
-
             std::cout << 1000000000 / _deltaTimeReal << std::endl;
 
             auto endTime = std::chrono::high_resolution_clock::now();
@@ -53,10 +52,9 @@ namespace Polaris {
                     timeElapsed = endTime - startTime;
                     if (timeElapsed.count() >= targetNS) break;
 
-                    timeval tv{ 0, 1 };
+                    timeval tv {0, 1};
                     select(0, nullptr, nullptr, nullptr, &tv);
                 }
-
                 _deltaTimeReal = timeElapsed.count();
             }
         }

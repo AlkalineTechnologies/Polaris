@@ -8,7 +8,7 @@
 #include <xcb/xcb.h>
 #include <xcb/xproto.h>
 #include <xcb/xcb_ewmh.h>
-
+#include  <xcb/xcb_atom.h>
 
 // c++ standard library
 #include <unistd.h>
@@ -17,15 +17,25 @@
 #include <cstring>
 #include <future>
 
-
-
 xcb_connection_t *connection    = xcb_connect(NULL, NULL);
 xcb_screen_t *screen            = xcb_setup_roots_iterator(xcb_get_setup(connection)).data;
 xcb_window_t window             = xcb_generate_id(connection);
 xcb_generic_event_t *event; 
 
+
+
+
 void Init_XCB(int width, int height, const char *title) {
-    xcb_create_window(connection, XCB_COPY_FROM_PARENT, window, screen->root, 0, 0, width, height, 0, XCB_WINDOW_CLASS_INPUT_OUTPUT, screen->root_visual, 0, NULL);
+    xcb_create_window(connection, 
+                        XCB_COPY_FROM_PARENT, 
+                        window, 
+                        screen->root, 
+                        0, 0, 
+                        width, 
+                        height, 0, 
+                        XCB_WINDOW_CLASS_INPUT_OUTPUT,
+                        screen->root_visual, 0, 
+                        NULL);
     
     xcb_change_property (connection,
                              XCB_PROP_MODE_REPLACE,
@@ -40,6 +50,7 @@ void Init_XCB(int width, int height, const char *title) {
 
 }
 void disconnect_XCB() {
+    xcb_destroy_window(connection, window);
     xcb_disconnect(connection);
 }
 
@@ -49,7 +60,10 @@ namespace Polaris{
         if (show){
             this->show();
         }
-    };
+        if (fullscreen){
+            this->Fullscreen();
+        }
+    }
 
     void Polaris::Window::setTitle(std::string title) {
         xcb_change_property (connection,
@@ -62,7 +76,16 @@ namespace Polaris{
                              title.c_str() );
         xcb_flush(connection);
     }
-
+    void Polaris::Window::Fullscreen() {
+        const static uint32_t values[] = { screen->width_in_pixels, screen->height_in_pixels, 0 };
+        /* Resize the window to width = 200 and height = 300 */
+        xcb_configure_window (connection, 
+            window, 
+            XCB_CONFIG_WINDOW_WIDTH | XCB_CONFIG_WINDOW_HEIGHT | XCB_CONFIG_WINDOW_BORDER_WIDTH,
+            values);
+        
+        xcb_flush(connection);
+    }
     void Polaris::Window::show() {
         xcb_map_window(connection, window);
         xcb_flush(connection);
@@ -72,7 +95,7 @@ namespace Polaris{
         xcb_flush(connection);
     };
 
-}
+};
 
 
 // void CLOSE_XLIB(){
