@@ -1,4 +1,4 @@
-    {
+{
     "version" : "2.0.0",
     "tasks": [
         {
@@ -19,9 +19,9 @@
                 "-o",
                 "${workspaceFolder}/Testing/build/GOP.out",
                 "-I${workspaceFolder}/Library",
-                "-lxcb","-pthread"
-            ],
-            "dependsOn":["[Linux] Build Libraries"]
+                "-lxcb", "-lX11", "-lX11-xcb","-pthread"
+            ]//,
+            //"dependsOn":["[Linux] Build Libraries"]
         }
     ]
 }

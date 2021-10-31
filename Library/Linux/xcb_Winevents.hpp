@@ -15,7 +15,7 @@ extern xcb_generic_event_t *event;
 
 
 static void Window_Loop(){
-    while ((event = xcb_wait_for_event (connection))) {
+    while ((event = xcb_wait_for_event (connection)) != NULL) {
         
         switch (event->response_type & ~0x80) {
             case XCB_EXPOSE:
@@ -38,8 +38,8 @@ static void Window_Loop(){
                 break;
             case XCB_KEY_RELEASE:
                 {
-                    xcb_key_release_event_t *krelease = (xcb_key_release_event_t *) event;
-                    std::cout << "XCB_KEY_RELEASE" << std::endl;
+                    xcb_key_release_event_t *key_event = (xcb_key_release_event_t *)event;
+                    std::cout << "XCB_KEY_RELEASE: "<< key_event->detail << std::endl;
                 }
                 break;
             case XCB_BUTTON_PRESS:
