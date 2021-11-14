@@ -20,8 +20,8 @@
                 "${workspaceFolder}/Testing/build/GOP.out",
                 "-I${workspaceFolder}/Library",
                 "-lxcb", "-lX11", "-lX11-xcb","-pthread"
-            ]//,
-            //"dependsOn":["[Linux] Build Libraries"]
+            ],
+            "dependsOn":["[Linux] Build Libraries"]
         }
     ]
 }

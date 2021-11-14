@@ -11,7 +11,7 @@ cd ./Library/Linux/build
 #           |             |           |
 #           |             |           |
 #           v             v           v
-g++ -g -c ../*.cpp     -I../../     -lX11
+g++ -g -c ../*.cpp     -I../../     -lX11           -pthread
 
 
 echo compilation has finished.

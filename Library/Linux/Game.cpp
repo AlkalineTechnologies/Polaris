@@ -7,7 +7,8 @@
 #include "../Game.h"
 
 #include <xcb/xcb.h>
-#include <Linux/xcb_Winevents.hpp>
+#include <Linux/LINUX_WM.hpp>
+#include <Window.h>
 #include <unistd.h>
 
 #include <iostream>
@@ -28,14 +29,13 @@ namespace Polaris {
     void Game::run() {
         gameLoopThread = new std::thread([&]() { _gameLoop(); });
 
-        Window_Loop();
+        // Polaris::Window::EventLoop();
     }
 
     void Game::_gameLoop() {
         while (!_terminate) {
             auto startTime = std::chrono::high_resolution_clock::now();
 
-            std::cout << 1000000000 / _deltaTimeReal << std::endl;
 
             auto endTime = std::chrono::high_resolution_clock::now();
             std::chrono::duration<long, std::nano> timeElapsed = endTime - startTime;
