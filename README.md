@@ -7,7 +7,7 @@
 
 ## Planned features
 + A multi purpose engine built for making more than just games, with the goal of full modularity, and the ability to cater to what developers want/need.
-+ Built on c++ 2021 with multiple language support (in form of the wrappers) planned.
++ Built on C++20 with multiple language support (in form of the wrappers) planned.
 + Cross platfrom development. Export your games to Windows, GNU/Linux, and MacOS
 + Vulkan support.
 + And much more!
