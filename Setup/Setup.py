@@ -1,4 +1,4 @@
-# basic setup script: @plasmarad (github)
+# basic setup script: @plasmarad (github) 
 
 import os
 import zipfile
