@@ -1,3 +1,5 @@
+# basic setup script: @plasmarad (github)
+
 import os
 import zipfile
 import requests
