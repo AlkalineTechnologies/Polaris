@@ -31,6 +31,8 @@ class OSBuildProfile:
         return cmd
 
 if os.name == 'posix':
+    os.makedirs(os.path.join(_EngineDir, "Build"), exist_ok=True)
+
     _LinuxProfile =  OSBuildProfile(compiler= "g++", standard= "c++2a", 
     
     files       = [os.path.join(_EngineDir, "**", "*.cpp"), ], 
