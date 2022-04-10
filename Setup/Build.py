@@ -1,7 +1,6 @@
 import os
 
 _EngineDir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../Engine")
-# g++ -std=c++2a ./../**/**.cpp -I.. -pthread -c
 
 class OSBuildProfile:
     Compiler    = ""
