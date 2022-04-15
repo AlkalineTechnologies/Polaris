@@ -1,3 +1,5 @@
+// public header
+
 #ifndef __POLARIS_INCLUDE_HPP__
 #define __POLARIS_INCLUDE_HPP__
 

@@ -34,7 +34,7 @@ if os.name == 'posix':
 
     _LinuxProfile =  OSBuildProfile(compiler= "g++", standard= "c++2a", 
     
-    files       = [os.path.join(_EngineDir, "**", "*.cpp"), ], 
+    files       = [os.path.join(_EngineDir, "**", "*.cpp"), os.path.join(_EngineDir, "**/**", "*.cpp") ], # Engine/**/*.cpp
     includes    = [_EngineDir], 
     libs        = [], 
     flags       = ["-pthread", "-c"], 
