@@ -68,9 +68,30 @@ class Generate_Project(Project):
             sys.exit("Exiting...")     
 
 
+# TODO
+class Generate_Module(Project):
+    def __init__(self, **kwargs):
+        Project.name        = kwargs["_name"]
+        Project.author      = kwargs["_author"]
+        Project.description = kwargs["_description"]
+        Project.path        = kwargs["_path"]
+        Project.version     = kwargs["_version"]
+        Project.ProjectDir  = os.path.join(Project.path, Project.name)
+        
+        Generate_Module.TemplateDir    = kwargs["_template"]
+        
+        Generate_Module.create_module()
+
+    #! TODO
+    def create_module():
+        pass
+
 if __name__ == "__main__":
     
     _parser = argparse.ArgumentParser(description="Polaris Project Generator")
+    _parser.add_argument("-m", "--mode", help="Mode of operation [Project, Module]", default="project")
+
+
     
     _parser.add_argument("-n", "--name",        help="Project Name"         , required=True                         )
     _parser.add_argument("-a", "--author",      help="Project Author"       , default=""                            )
@@ -87,7 +108,13 @@ if __name__ == "__main__":
             "██║░░░░░╚█████╔╝███████╗██║░░██║██║░░██║██║██████╔╝\n"
             "╚═╝░░░░░░╚════╝░╚══════╝╚═╝░░╚═╝╚═╝░░╚═╝╚═╝╚═════╝░\n")
 
-
-    Generate_Project( _name         = _parser.parse_args().name,                    _author     = _parser.parse_args().author, 
-                      _description  = _parser.parse_args().description,             _path       = _parser.parse_args().path, 
-                      _version      = _parser.parse_args().version,                 _template   = _parser.parse_args().template)
+    args = _parser.parse_args()
+    if args.mode == "project":
+        Generate_Project(   _name         = args.name,                    _author     = args.author, 
+                            _description  = args.description,             _path       = args.path, 
+                            _version      = args.version,                 _template   = args.template)
+    elif args.mode == "module":
+        Generate_Module(    _name         = args.name,                    _author     = args.author, 
+                            _description  = args.description,             _path       = args.path, 
+                            _version      = args.version,                 _template   = args.template)
+#! remember to work on Generate_Module

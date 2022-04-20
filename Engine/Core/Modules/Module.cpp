@@ -5,7 +5,7 @@ namespace Polaris{
     namespace Modules{
         std::vector<Module*> Module::_ModuleInstances;
         
-        Module::Module(){
+        Module::Module(std::string _name, int _id){
             _ModuleInstances.push_back(this);
         }
         
