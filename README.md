@@ -1,7 +1,7 @@
 # Polaris
 > ![polaris_banner.png](polaris_LOGO_white_strip.png)
 
-***An engine for everyone! where your imagination is the limit.***
+***An framework for everyone! where your imagination is the limit.***
 
 
 
