@@ -3,16 +3,9 @@
 
 ***An framework for everyone! where your imagination is the limit.***
 
-
-
-## Planned features
-+ A multi purpose engine built for making more than just games, with the goal of full modularity, and the ability to cater to what developers want/need.
-+ Built on C++20 with multiple language support (in form of the wrappers) planned.
-+ Cross platfrom development. Export your games to Windows, GNU/Linux, and MacOS
-+ Vulkan support.
-+ And much more!
-
-
 ## About
-Polaris is a game engine designed to have little limitations, but not be too cumbursome on a new user. 
+Polaris is a framework that allows you to built anything you desire, whether that is a fancy GUI, to a simple 2D sidescroller, or a simple CLI application.
+all of this possible through the use of modules and plugins, which are developed by the community for the community. and all of this so you can develop your apps easier and more flexibly.
 
+> **Note** 
+> polaris is in its early stages and has only begun development
