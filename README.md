@@ -1,7 +1,7 @@
 # Polaris
 > ![polaris_banner.png](polaris_LOGO_white_strip.png)
 
-***An framework for everyone! where your imagination is the limit.***
+***A framework for everyone! where your imagination is the limit.***
 
 ## About
 Polaris is a framework that allows you to built anything you desire, whether that is a fancy GUI, to a simple 2D sidescroller, or a simple CLI application.
