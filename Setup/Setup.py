@@ -29,7 +29,7 @@ class Generate_Project(Project):
         
         Generate_Project.create_project()
 
-    def create_project():
+    def create_project(self):
         _temp_name = "tmp.zip"
         zip_dir = os.path.join(Project.ProjectDir, _temp_name)
         try:
@@ -55,7 +55,7 @@ class Generate_Project(Project):
 
 
 
-    def fetch_polaris():
+    def fetch_polaris(self):
         _temp_name = "tmp.zip"
         
         fetch  = requests.get("https://api.github.com/repos/PolarisEngine/Polaris/releases/latest")
@@ -64,7 +64,7 @@ class Generate_Project(Project):
         if fetch.status_code == 200:
             open (os.path.join(Project.ProjectDir, _temp_name), 'wb').write(requests.get( fetch.json()['assets'][0]['browser_download_url'] ).content)
         else:
-            print("Error: " + fetch.status_code)
+            print("Error: " + str(fetch.status_code))
             sys.exit("Exiting...")     
 
 
@@ -83,7 +83,7 @@ class Generate_Module(Project):
         Generate_Module.create_module()
 
     #! TODO
-    def create_module():
+    def create_module(self):
         pass
 
 if __name__ == "__main__":
