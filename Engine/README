@@ -1,0 +1,19 @@
+HIERARCHY FOR MODULES:
+
+Engine:
+  |
+  |-- Component:
+  |----- Source:
+  |-------- ...
+  |----- Header.hpp
+
+
+
+Example:
+
+Engine:
+  |
+  |-- Window:
+  |----- GLFW:
+  |-------- [CONTENTS]
+  |----- Window.hpp             # accessed by the dev
