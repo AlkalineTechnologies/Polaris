@@ -2,11 +2,6 @@
 # Directory
 Engine/Build
 
-
-# Game Of Polaris
-GOP/**
-
-
 # Prerequisites
 *.d
 
