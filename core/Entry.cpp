@@ -2,7 +2,7 @@
 #include <string>
 #include <map>
 
-#include "arg_actions.hpp"
+#include "Args.hpp"
 
 
 int main(int argc, char** argv){
@@ -11,15 +11,15 @@ int main(int argc, char** argv){
     // add arguments
 
     program.add_argument("-n","--new")
-        .nargs(1)
+        .nargs(3) //* Project Name, Project Type, Project Location
         .help("Initialize a new Polaris Project");
         
     program.add_argument("-i","--init")
-        .nargs(1) // Where to init the Workspace
+        .nargs(1) //* Where to init the Workspace
         .help("Initialize a new Polaris Module");
 
     program.add_argument("-b","--build")
-        .nargs(1) // Where to build
+        .nargs(0)
         .help("Build a Polaris Project");
 
     try {
@@ -32,7 +32,4 @@ int main(int argc, char** argv){
     }
 
     Args_To_Act(program);
-
-    // if get "project" : ...
-    // else if get "module" : ...
 }
