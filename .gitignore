@@ -1,6 +1,7 @@
 .vscode
 # Directory
 Engine/Build
+.hidden
 
 # Prerequisites
 *.d

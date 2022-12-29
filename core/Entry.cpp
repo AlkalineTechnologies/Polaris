@@ -1,10 +1,12 @@
-#include "argparse.hpp"
+#include <Libraries/argparse.hpp>
 #include <string>
 #include <map>
 
 #include "Args.hpp"
 
-
+// compile commands:
+// cd core
+// g++ -std=c++2a ./**.cpp ./**/**.cpp -I. -lcurl -lzip
 int main(int argc, char** argv){
     argparse::ArgumentParser program("PCLT");
 

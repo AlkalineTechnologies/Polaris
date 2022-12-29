@@ -1,8 +1,9 @@
-#ifndef __INITDR_HPP__
-#define __INITDR_HPP__
+#ifndef __PCLT_INIT_HPP__
+#define __PCLT_INIT_HPP__
 
-#include "../argparse.hpp"
+#include <Libraries/argparse.hpp>
+#include <string>
 
-void Init_Workspace(argparse::ArgumentParser& program);
-
+// future parameters: Project Name, Project Location, PCLT-version
+void Init_Workspace(argparse::ArgumentParser& program, std::string Location ="");
 #endif
