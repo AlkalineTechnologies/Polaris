@@ -48,9 +48,9 @@ size_t fcallback(void *ptr, size_t size, size_t nmemb, FILE *stream){
 void DownloadTemplate(std::string Location){
     CURL  *curl = curl_easy_init();
     
-    #define RESPONSE GetContentsFromURL("https://api.github.com/repos/AlkalineTechnologies/pclt-project/releases/latest")
+    #define RESPONSE GetContentsFromURL("https://api.github.com/repos/AlkalineTechnologies/pclt.project/releases/latest")
     
-    std::string TemplateURL = "https://github.com/AlkalineTechnologies/pclt-project/archive/refs/tags/" + json::parse(RESPONSE)["tag_name"].get<std::string>() + ".zip";
+    std::string TemplateURL = "https://github.com/AlkalineTechnologies/pclt.project/archive/refs/tags/" + json::parse(RESPONSE)["tag_name"].get<std::string>() + ".zip";
     
     curl_easy_setopt(curl, CURLOPT_URL, TemplateURL.c_str());
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
@@ -58,9 +58,9 @@ void DownloadTemplate(std::string Location){
     curl_easy_setopt(curl, CURLOPT_ACCEPT_ENCODING, "deflate");
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, fcallback);
 
-    // create a lambda function append "pclt-project.zip" to a string
+    // create a lambda function append "pclt.project.zip" to a string
 
-    FILE *fp = fopen(std::string(Location += "pclt-project.zip").c_str() , "wb");
+    FILE *fp = fopen(std::string(Location += "pclt.project.zip").c_str() , "wb");
     if (fp == NULL){
         printf("Error: Directory given does not exists.\n");
         return;
@@ -107,7 +107,7 @@ void Init_Workspace(argparse::ArgumentParser& program, std::string Location){
     
     DownloadTemplate(Location); // download the template
 
-    extractZip(Location + "pclt-project.zip", Location); // extract the zip file
+    extractZip(Location + "pclt.project.zip", Location); // extract the zip file
     
-    remove((Location + "pclt-project.zip").c_str()); // remove the zip file
+    remove((Location + "pclt.project.zip").c_str()); // remove the zip file
 }
