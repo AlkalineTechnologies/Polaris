@@ -1,6 +1,6 @@
 .vscode
 # Directory
-Engine/Build
+bin/*
 .hidden
 
 # Prerequisites
