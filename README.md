@@ -14,3 +14,6 @@ cd      bin
 cmake   ..
 make    .
 ```
+> ```make``` is optional, you can use ```cmake --build .``` instead
+> You can also (to speed up build times) use ```cmake --build . --parallel```
+> or even use mold as the linker (if you have it installed, in order to speed up build times even more)
