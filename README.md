@@ -1,4 +1,4 @@
-> ![polaris_banner.png](polaris_LOGO_white_strip.png)
+> ![polaris_banner.png](assets/polaris_LOGO_white_strip.png)
 
 
 # ***P O L A R I S***
