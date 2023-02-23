@@ -1,11 +1,7 @@
 .vscode
 # Directory
-Engine/Build
-
-
-# Game Of Polaris
-GOP/**
-
+bin/*
+.hidden
 
 # Prerequisites
 *.d

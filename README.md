@@ -1,11 +1,19 @@
-# Polaris
-> ![polaris_banner.png](polaris_LOGO_white_strip.png)
+> ![polaris_banner.png](assets/polaris_LOGO_white_strip.png)
 
-***A framework for everyone! where your imagination is the limit.***
 
-## About
-Polaris is a framework that allows you to built anything you desire, whether that is a fancy GUI, to a simple 2D sidescroller, or a simple CLI application.
-all of this possible through the use of modules and plugins, which are developed by the community for the community. and all of this so you can develop your apps easier and more flexibly.
+# ***P O L A R I S***
+*Realiable application framework for easier development*
 
-> **Note** 
-> polaris is in its early stages and has only begun development
+## ***Introducing PCLT***
+`PCLT` is a command line tool that allows you to manage your polaris project, and swap components/modules.
+`PCLT` also doubles as a ***(future)*** package manager which (plans to) deal with dependencies  ~~(and licensing)~~
+
+# ***How To Build***
+```shell
+cd      bin
+cmake   ..
+make    .
+```
+> ```make``` is optional, you can use ```cmake --build .``` instead
+> You can also (to speed up build times) use ```cmake --build . --parallel```
+> or even use mold as the linker (if you have it installed, in order to speed up build times even more)
